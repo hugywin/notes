@@ -58,9 +58,9 @@
   #  变量定义
   variables:
     # 基础镜像名
-    DOCKER_IMAGE_NAME: docker2.yidian.com:5000/centos/node-wemedia-8.9:20180119
+    DOCKER_IMAGE_NAME:
     # 构建后的镜像名前缀, 最后为小写的project name
-    DEPLOY_IMAGE_NAME_PREFIX: docker2.yidian.com:5000/publish/node-wemedia-link
+    DEPLOY_IMAGE_NAME_PREFIX:
     HOST_PORT: "7700"
     DOCKER_PORT: "7700"
     PROJECT_NODE_MODULE_VER: 1
@@ -129,7 +129,7 @@
     stage: deploy
     script:
       - echo "fetch helpful"
-      - curl https://git.yidian-inc.com:8021/wemedia-js/ci-helpful/repository/master/archive.tar.gz > ci.tar.gz
+      - curl https://gitlab.com/wemedia-js/ci-helpful/repository/master/archive.tar.gz > ci.tar.gz
       - tar -xf ci.tar.gz
       - mv ci-helpful-master* ci-helpful
 
