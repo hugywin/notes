@@ -39,7 +39,7 @@
   [localhost]: test-runner
   Please enter the gitlab-ci tags for this runner (comma separated): （tag名称）
   test-tag
-  Whether to run untagged builds [true/false]:
+  Whether to run untagged builds [true/false]: ()
   [false]: true
   Whether to lock the Runner to current project [true/false]:
   [true]: true

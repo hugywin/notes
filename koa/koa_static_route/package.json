@@ -1,0 +1,15 @@
+{
+  "name": "koa_static_route",
+  "version": "1.0.0",
+  "description": "基于静态类实现装饰器路由",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hugywin@163.com",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.5.0",
+    "koa-better-body": "^3.0.4"
+  }
+}
