@@ -105,14 +105,14 @@ class KoaRouter {
         }
 
         // 如果匹配没参数返回空对象
-        console.log('route', route)
+        console.log('route', route, ctx.path, ctx.params)
         let match = route.match(ctx.path, ctx.params)
         if (!match) {
           continue
         }
 
         route.params = match
-        console.log('match', match)
+        // console.log('match', match)
         // 挂载koa ctx
         ctx.route = route
         ctx.params = route.params

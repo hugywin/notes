@@ -23,7 +23,7 @@ class CreateRoute extends Router{
       // 静态方法
       let staticDecorate = Object.getOwnPropertyNames(Factory)
 
-      this.resouce = middlewares.map(method => {
+       middlewares.map(method => {
         if (staticDecorate.indexOf[method] === -1) {
           throw new TypeError('controller方法缺少静态方法')
           return
@@ -31,7 +31,7 @@ class CreateRoute extends Router{
         let opts = Factory[method].call(Factory)
         opts.middlewares.push(inter[method])
         opts.context = inter
-        return opts
+        this.resouce.push(opts)
       })
     })
   }
