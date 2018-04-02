@@ -1,5 +1,7 @@
 'use strict'
 
+let utils = new Object()
+
 utils.typeOf = function typeOf (val) {
   return Array.isArray(val) ? 'array' : typeof val
 }

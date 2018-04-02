@@ -13,6 +13,8 @@ class example {
   }
 
   async show (ctx, next) {
-    ctx.body = ctx.query;
+    ctx.body = ctx.params;
   }
 }
+
+module.exports = example

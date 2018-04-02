@@ -2,46 +2,49 @@ const Router = require('./Router')
 const path = require('path')
 const glob = require('glob')
 
-class CreateRoute extends Router {
+class CreateRoute extends Router{
   constructor(options) {
-    if (!(this instanceof CreateRoute)) {
-      return new CreateRoute(options)
-    }
-    super({options, options.prefix})
+    super({prefix: options.prefix})
     this.options = options;
-    this.routes = []
+    this.resouce = []
     // 生成路由资源
     this.getResouce()
   }
 
   getResouce () {
     const dirArray = glob.sync(path.join(this.options.ctrlPath, './*.js'))
+
     dirArray.forEach(dir => {
-      let Factory = require(path)
+      let Factory = require(dir)
       let inter = new Factory()
-      dirName = path.basename(dir, '.js')
+      //let dirName = path.basename(dir, '.js')
       // controller 路由
       let middlewares = Object.getOwnPropertyNames(Factory.prototype).splice(1)
       // 静态方法
       let staticDecorate = Object.getOwnPropertyNames(Factory)
 
-      this.routes = middlewares.map(method => {
+      this.resouce = middlewares.map(method => {
         if (staticDecorate.indexOf[method] === -1) {
           throw new TypeError('controller方法缺少静态方法')
           return
         }
-        let opts = method.call(Factory)
-        opts.middlewares.push(inter.method)
+        let opts = Factory[method].call(Factory)
+        opts.middlewares.push(inter[method])
         opts.context = inter
         return opts
       })
     })
-    this.createResouce()
+  }
+
+  _getMethod (Obj, arr) {
+    return arr.map(item => {
+      return Obj[item]
+    })
   }
 
   // 注入
   inject (opts) {
-    this.routes.forEach(route => {
+    this.resouce.forEach(route => {
       let context = route.context
       route.middlewares.forEach(middleware => {
         middleware = (ctx, next, opts) => {
@@ -53,10 +56,17 @@ class CreateRoute extends Router {
 
   // 生成中间件
   middleware () {
-    this.routes.forEach(reute => {
+    this.resouce.forEach(route => {
       this.addRoute(route.method, route.url, route.middlewares)
     })
     return super.middleware()
+    // return () => {
+    //
+    // }
   }
 
+}
+
+module.exports = function(options) {
+  return new CreateRoute(options)
 }
