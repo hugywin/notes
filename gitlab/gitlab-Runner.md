@@ -53,6 +53,7 @@
 
 
   ### [GitLab .gitlab-ci.yml](https://docs.gitlab.com/ce/ci/yaml/README.html)
+  [github翻译地址](https://github.com/Fennay/gitlab-ci-cn)
   demo 如下：
   ```
   #  变量定义
